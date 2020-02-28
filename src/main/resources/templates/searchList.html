@@ -15,14 +15,12 @@
         <div th:each="car:${vehiclesSearch}">
             <h1 th:text="${car.manufacturer}"></h1>
             <p th:inline="text">The car's manufacturer is [[${car.manufacturer}]]</p>
-            <div th:each="car: ${cars}">
+            <div th:each="car: ${car}">
                 <p th:text="${car.manufacturer}"></p>
                 <p th:text="${car.model}"></p>
                 <p th:text="${car.year}"></p>
                 <p th:text="${car.msrp}"></p>
                 <p th:text="${car.carURL}"></p>
-<!--                <p th:text="${car.photo}"></p>-->
-<!--                <p th:text="${car.user}"></p>-->
             </div>
         </div>
     </th:block>

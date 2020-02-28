@@ -33,20 +33,25 @@
         <form action="#" th:action="@{/processCar}" th:object="${car}" method="post" enctype="multipart/form-data">
             <input type="hidden" th:field="*{id}" />
             Manufacturer :<input type="text" placeholder="manufacturer" th:field="*{manufacturer}" />
-            <span th:if="${#fields.hasErrors('manufacturer')}"
-                  th:errors="*{manufacturer}"></span><br />
+                <span th:if="${#fields.hasErrors('manufacturer')}"
+                      th:errors="*{manufacturer}"></span><br />
+
             Model :<input type="text" placeholder="model" th:field="*{model}" />
             <span th:if="${#fields.hasErrors('model')}"
                   th:errors="*{model}"></span><br />
-            Year :<input type="text" placeholder="year" th:field="*{year}" />
+
+            Year :<input type="text" placeholder="year" th:field="*{year}"  />
             <span th:if="${#fields.hasErrors('year')}"
                   th:errors="*{year}"></span><br />
-            MSRP :<input type="text" placeholder="msrp" th:field="*{msrp}" />
+
+            MSRP :<input type="text" placeholder="msrp" th:field="*{msrp}"  />
             <span th:if="${#fields.hasErrors('msrp')}"
                   th:errors="*{msrp}"></span><br />
+
             carURL :<input type="text" placeholder="car" th:field="*{carURL}" />
             <span th:if="${#fields.hasErrors('carURL')}"
                   th:errors="*{carURL}"></span><br />
+
             <input type="submit" value="Submit" />
         </form>
 

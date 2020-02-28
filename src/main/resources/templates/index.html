@@ -35,8 +35,6 @@
             <li th:inline="text"><b>[[${car.year}]]</b></li>
             <li th:inline="text"><b>[[${car.msrp}]]</b></li>
             <li th:inline="text"><b>[[${car.carURL}]]</b></li>
-<!--            <li th:inline="text"><b>[[${car.photo}]]</b></li>-->
-<!--            <li th:inline="text"><b>[[${car.user}]]</b></li>-->
         </th:block>
         <tr>
             <td>
@@ -77,7 +75,8 @@
                     <p class="card-text" th:text="${car.model}"></p>
                 </div>
                 <div class="card-footer">
-                    <small class="text-muted">Uploaded by: </small><small class="text-muted"  th:text="${car.user}"></small>
+                    <small class="text-muted">Uploaded by: </small><small class="text-muted"  th:text="${car.user}"></small><br>
+                    <a href="">View More</a>
                 </div>
             </div>
         </div>
