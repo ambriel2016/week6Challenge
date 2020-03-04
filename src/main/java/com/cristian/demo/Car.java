@@ -13,24 +13,22 @@ public class Car {
     private String year;
     private String msrp;
     private String carURL;
-    private String photo;
     private String user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
 
     public Car() {
     }
 
-    public Car(long id, String manufacturer, String model, String year, String msrp, String carURL, String photo, String user){
+    public Car(long id, String manufacturer, String model, String year, String msrp, String carURL, String user){
         this.id = id;
         this.manufacturer = manufacturer;
         this.model = model;
         this.year = year;
         this.msrp = msrp;
         this.carURL = carURL;
-        this.photo = photo;
         this.user = user;
     }
 
@@ -72,14 +70,6 @@ public class Car {
 
     public void setMsrp(String msrp) {
         this.msrp = msrp;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
     }
 
     public String getUser() {

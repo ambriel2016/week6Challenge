@@ -4,11 +4,9 @@ import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Map;
 
@@ -38,26 +36,9 @@ public class HomeController {
 
     @GetMapping("/addCar")
     public String carForm(Model model){
+        model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("car", new Car());
         return "carform";
-    }
-
-    @PostMapping("/addCar")
-    public String processCar(@ModelAttribute Car car,
-                              @RequestParam("file") MultipartFile file) {
-        if (file.isEmpty()) {
-            return "redirect:/addCar";
-        }
-        try {
-            Map uploadResult = cloudc.upload(file.getBytes(),
-                    ObjectUtils.asMap("resourcetype", "auto"));
-            car.setPhoto(uploadResult.get("url").toString());
-            carRepository.save(car);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "redirect:/addCar";
-        }
-        return "redirect:/";
     }
 
     @PostMapping("/processCar")
@@ -69,7 +50,7 @@ public class HomeController {
     @RequestMapping("/detailCar/{id}")
     public String showCar(@PathVariable("id") long id, Model model){
         model.addAttribute("car", carRepository.findById(id).get());
-        return "show";
+        return "showCar";
     }
 
     @RequestMapping("/updateCar/{id}")
@@ -90,14 +71,26 @@ public class HomeController {
         return "categoryform";
     }
     @PostMapping("/processCategory")
-    public String processForm(@ModelAttribute Category category){
-        categoryRepository.save(category);
+    public String processCar(@ModelAttribute Category category,
+                             @RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) {
+            return "redirect:/addCategory";
+        }
+        try {
+            Map uploadResult = cloudc.upload(file.getBytes(),
+                    ObjectUtils.asMap("resourcetype", "auto"));
+            category.setPhoto(uploadResult.get("url").toString());
+            categoryRepository.save(category);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "redirect:/addCategory";
+        }
         return "redirect:/";
     }
     @RequestMapping("/detailCategory/{id}")
     public String showCategory(@PathVariable("id") long id, Model model){
         model.addAttribute("category", categoryRepository.findById(id).get());
-        return "show";
+        return "showCategory";
     }
 
     @RequestMapping("/updateCategory/{id}")

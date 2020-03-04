@@ -23,27 +23,25 @@
     </div>
 </header>
 
-<h1 style="text-align:center">Car Listings</h1>
-<div th:each="car:${cars}">
-    <h2 th:text="${car.manufacturer}"></h2>
-    <h6 th:inline="text">Car's model is [[${car.model}]]</h6>
-    <h6 th:inline="text">year of [[${car.year}]]</h6>
-    <ul>
-        <th:block th:each="category : ${car}">
-            <li th:inline="text"><b>[[${car.manufacturer}]]</b></li>
-            <li th:inline="text"><b>[[${car.model}]]</b></li>
-            <li th:inline="text"><b>[[${car.year}]]</b></li>
-            <li th:inline="text"><b>[[${car.msrp}]]</b></li>
-            <li th:inline="text"><b>[[${car.carURL}]]</b></li>
-        </th:block>
-        <tr>
-            <td>
-                <a th:href="@{/updateCar/{id}(id=${car.id})}">Update</a>
-                <a th:href="@{/detailCar/{id}(id=${car.id})}">Details</a>
-                <a th:href="@{/deleteCar/{id}(id=${car.id})}">Delete</a>
-            </td>
-        </tr>
-    </ul>
+<h1 style="text-align:center">Category Listings</h1>
+<div th:each="category : ${categories}">
+    <h2 th:text="${category.categoryName}"></h2>
+    <div th:each="car : ${category.cars}">
+    <h6 th:inline="text">Car's manufacturer is [[${car.manufacturer}]]</h6>
+    <h6 th:inline="text">model is [[${car.model}]]</h6>
+    <h6 th:inline="text">year is [[${car.model}]]</h6>
+
+        <ul>
+            <tr>
+                <td>
+                    <a th:href="@{/updateCar/{id}(id=${car.id})}">Update</a>
+                    <a th:href="@{/detailCar/{id}(id=${car.id})}">Details</a>
+                    <a th:href="@{/deleteCar/{id}(id=${car.id})}">Delete</a>
+                </td>
+            </tr>
+        </ul>
+    </div>
+
 </div>
 
 <!-- search bar -->
@@ -64,18 +62,18 @@
 </div>
 
 <div class="card-columns">
-    <div th:each="car : ${cars}">
+    <div th:each="category : ${categories}">
         <div class="card">
             <div class="card-block">
-                <div th:if="${car.photo} != null">
-                    <img class="img-fluid" th:src="${car.photo}" /><hr />
+                <div th:if="${category.photo} != null">
+                    <img class="img-fluid" th:src="${category.photo}" /><hr />
                 </div>
                 <div class="card-body">
-                    <h4 class="card-title" th:text="${car.manufacturer}"></h4>
-                    <p class="card-text" th:text="${car.model}"></p>
+                    <h4 class="card-title" th:text="${category.categoryName}"></h4>
+                    <p class="card-text" th:text="${category.year}"></p>
                 </div>
                 <div class="card-footer">
-                    <small class="text-muted">Uploaded by: </small><small class="text-muted"  th:text="${car.user}"></small><br>
+                    <small class="text-muted">Uploaded by:</small><small class="text-muted"  th:text="${category.categoryName}"></small><br>
                     <a href="">View More</a>
                 </div>
             </div>

@@ -48,9 +48,16 @@
             <span th:if="${#fields.hasErrors('msrp')}"
                   th:errors="*{msrp}"></span><br />
 
-            carURL :<input type="text" placeholder="car" th:field="*{carURL}" />
+            carURL :<input type="text" placeholder="carURL" th:field="*{carURL}"  />
             <span th:if="${#fields.hasErrors('carURL')}"
                   th:errors="*{carURL}"></span><br />
+
+            <select th:field="*{category}">
+                <div th:each="category : ${categories}">
+                    <option th:value="${category.id}" th:text="${category.categoryName}">
+                    </option>
+                </div>
+            </select>
 
             <input type="submit" value="Submit" />
         </form>

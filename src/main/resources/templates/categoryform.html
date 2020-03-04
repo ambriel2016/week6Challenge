@@ -30,7 +30,7 @@
 
         <h1>Category Form</h1>
 
-        <form action="#" th:action="@{/processCategory}" th:object="${category}" method="post">
+        <form action="#" th:action="@{/processCategory}" th:object="${category}" enctype="multipart/form-data" method="post">
             <input type="hidden" th:field="*{id}" />
             Category Name :<input type="text" placeholder="categoryName" th:field="*{categoryName}" />
             <span th:if="${#fields.hasErrors('categoryName')}"
@@ -38,6 +38,7 @@
             Year :<input type="text" placeholder="year" th:field="*{year}" />
             <span th:if="${#fields.hasErrors('year')}"
                   th:errors="*{year}"></span><br />
+            photo :<input type="file" name="file"/><br/><br/>
             <input type="submit" value="Submit" />
         </form>
 

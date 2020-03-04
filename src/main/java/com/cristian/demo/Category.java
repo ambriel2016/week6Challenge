@@ -10,6 +10,7 @@ public class Category {
     private long id;
     private String categoryName;
     private String year;
+    private String photo;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     public Set<Car> cars;
@@ -36,6 +37,14 @@ public class Category {
     public String getYear() {  return year;  }
 
     public void setYear(String year) {  this.year = year;  }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
     public Set<Car> getCars() {
         return cars;
