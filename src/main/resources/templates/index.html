@@ -27,9 +27,9 @@
 <div th:each="category : ${categories}">
     <h2 th:text="${category.categoryName}"></h2>
     <div th:each="car : ${category.cars}">
-    <h6 th:inline="text">Car's manufacturer is [[${car.manufacturer}]]</h6>
-    <h6 th:inline="text">model is [[${car.model}]]</h6>
-    <h6 th:inline="text">year is [[${car.model}]]</h6>
+    <h6 th:inline="text">The Car's manufacturer is [[${car.manufacturer}]]</h6>
+    <h6 th:inline="text">with the model's name is [[${car.model}]]</h6>
+    <h6 th:inline="text">and the year of [[${car.year}]]</h6>
 
         <ul>
             <tr>
